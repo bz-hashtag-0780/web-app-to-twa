@@ -1,5 +1,4 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-
 'use client';
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
@@ -23,8 +22,8 @@ export const AuthContextProvider = ({
 	const [username, setUsername] = useState<string | null>(null);
 
 	useEffect(() => {
-		if (WebApp) {
-			// Initialize WebApp properties
+		// Ensure this code only runs on the client side
+		if (typeof window !== 'undefined' && WebApp) {
 			WebApp.isVerticalSwipesEnabled = false;
 			setWindowHeight(WebApp.viewportStableHeight || window.innerHeight);
 			WebApp.ready();
