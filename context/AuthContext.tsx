@@ -8,7 +8,7 @@ type AuthContextType = {
 	userID: number | null;
 	username: string | null;
 	windowHeight: number;
-	isDataValid: boolean; // Add validation status to the context
+	isDataValid: boolean;
 };
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -21,7 +21,7 @@ export const AuthContextProvider = ({
 	const [windowHeight, setWindowHeight] = useState<number>(0);
 	const [userID, setUserID] = useState<number | null>(null);
 	const [username, setUsername] = useState<string | null>(null);
-	const [isDataValid, setIsDataValid] = useState<boolean>(false); // Track validation status
+	const [isDataValid, setIsDataValid] = useState<boolean>(false);
 
 	useEffect(() => {
 		// Ensure this code only runs on the client side
@@ -35,7 +35,7 @@ export const AuthContextProvider = ({
 				try {
 					const botId = 7210667871; // Replace with your actual bot ID
 					await validate3rd(WebApp.initData, botId); // Validate initData
-					setIsDataValid(true); // Set validation status
+					setIsDataValid(true);
 					const user = WebApp.initDataUnsafe.user; // Extract user data if valid
 					setUserID(user?.id || null);
 					setUsername(user?.username || null);
@@ -55,7 +55,7 @@ export const AuthContextProvider = ({
 		userID,
 		username,
 		windowHeight,
-		isDataValid, // Expose validation status
+		isDataValid,
 	};
 
 	return (
